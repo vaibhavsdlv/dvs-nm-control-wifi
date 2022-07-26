@@ -12,9 +12,11 @@ INCLUDEPATH += .
 DEFINES += QT_DEPRECATED_WARNINGS
 
 HEADERS += wifidevice.h \
-    networkmanager.h
+    networkmanager.h \
+    wificontrol.h
 SOURCES += wifidevice.cpp \
-    networkmanager.cpp
+    networkmanager.cpp \
+    wificontrol.cpp
 
 unix {
     target.path = /usr/lib
