@@ -4,7 +4,7 @@ CXXFLAGS += -std=c++17 -Wall -Wextra -fPIC -g
 
 CXXFLAGS += -I.. -I/data/Qt_5.14/5.14.1/gcc_64/include -I/data/Qt_5.14/5.14.1/gcc_64/include/QtDBus -I/data/Qt_5.14/5.14.1/gcc_64/include/QtCore -I/data/Qt_5.14/5.14.1/gcc_64/mkspecs/linux-g++
 
-LDFLAGS += -L.. -lwifi-control-nm -Wl,-rpath,/data/Qt_5.14/5.14.1/gcc_64/lib /data/Qt_5.14/5.14.1/gcc_64/lib/libQt5DBus.so /data/Qt_5.14/5.14.1/gcc_64/lib/libQt5Core.so
+LDFLAGS += -L.. -ldvs-nm-control-wifi -Wl,-rpath,/data/Qt_5.14/5.14.1/gcc_64/lib /data/Qt_5.14/5.14.1/gcc_64/lib/libQt5DBus.so /data/Qt_5.14/5.14.1/gcc_64/lib/libQt5Core.so
 LDFLAGS += -lgtest_main -lgtest -pthread 
 
 ODIR = obj
