@@ -48,4 +48,23 @@ std::vector< std::string > NetworkManager::GetDevices()
 
     return deviceList;
 }
-} // namespace ABC
+
+void NetworkManager::Reload(NMReloadFlag flag)
+{
+    QDBusConnection bus = QDBusConnection::systemBus();
+    QDBusInterface dbusIface("org.freedesktop.NetworkManager",
+                             "/org/freedesktop/NetworkManager",
+                             "org.freedesktop.NetworkManager",
+                             bus);
+
+    QDBusMessage reply = dbusIface.call("Reload", flag);
+
+    if (reply.errorMessage() != "")
+    {
+        std::string error = "Failed to reload NetworkManager, operation flag: ";
+        error.append( std::to_string((int8_t)flag ) );
+        std::cout << __PRETTY_FUNCTION__ << " Failed to reload NetworkManager, operation flag: " << flag << "\n";
+        throw error;
+    }
+}
+}  // namespace ABC

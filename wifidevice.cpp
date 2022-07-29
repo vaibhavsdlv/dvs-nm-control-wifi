@@ -66,7 +66,17 @@ void WifiDevice::connect(std::string &accessPoint)
  */
 void WifiDevice::disconnect()
 {
+    QDBusConnection bus = QDBusConnection::systemBus();
+    QDBusInterface wirelessDevice("org.freedesktop.NetworkManager",
+                                  devicePath.c_str(),
+                                  "org.freedesktop.NetworkManager.Device",
+                                  bus);
+    QDBusMessage reply = wirelessDevice.call("Disconnect");
+
+    if (reply.errorMessage() != "")
+    {
+        std::cout << __PRETTY_FUNCTION__ << " : Failed to disconnect!\n";
+    }
 }
 
-} // namespace ABC
-
+}  // namespace ABC
